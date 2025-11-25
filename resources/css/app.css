@@ -3,4 +3,7 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
-@plugin "daisyui";
+
+@plugin "daisyui" {
+  themes: all;
+}
