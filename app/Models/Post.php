@@ -17,4 +17,11 @@ class Post extends Model
             return explode("\n\n", $this->body)[0];
         });
     }
+
+    public function displayBody(): Attribute
+    {
+        return Attribute::get(function () {
+            return nl2br(htmlspecialchars($this->body));
+        });
+    }
 }
