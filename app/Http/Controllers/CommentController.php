@@ -50,7 +50,21 @@ class CommentController extends Controller
 
     {
 
-        //
+        $post = \App\Models\Post::findOrFail($request->post_id);
+
+        $this->authorize('create', Comment::class);
+
+        $comment = new Comment();
+
+        $comment->body = $request->body;
+
+        $comment->post()->associate($post);
+
+        $comment->user()->associate(\Illuminate\Support\Facades\Auth::user());
+
+        $comment->save();
+
+        return redirect()->route('post', $post);
 
     }
 
@@ -106,7 +120,13 @@ class CommentController extends Controller
 
     {
 
-        //
+        $this->authorize('delete', $comment);
+
+        $post = $comment->post;
+
+        $comment->delete();
+
+        return redirect()->route('post', $post);
 
     }
 }

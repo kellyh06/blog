@@ -48,7 +48,7 @@ class CommentPolicy
 
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -61,7 +61,7 @@ class CommentPolicy
 
     {
 
-        return false;
+        return $user->id === $comment->user_id;
     }
 
     /**
@@ -74,7 +74,7 @@ class CommentPolicy
 
     {
 
-        return false;
+        return $user->id === $comment->user_id;
     }
 
     /**

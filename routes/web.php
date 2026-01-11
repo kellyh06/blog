@@ -21,6 +21,10 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
+    Route::post('/post/{post}/comment', [\App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
+
+    Route::delete('/comment/{comment}', [\App\Http\Controllers\CommentController::class, 'destroy'])->name('comment.destroy');
+
     Route::get('/post/{post}/like', [PublicController::class, 'like'])->name('like');
 
     // Route::get('/admin/posts', [PostController::class, 'index'])->name('posts.index');
