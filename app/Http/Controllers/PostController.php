@@ -113,4 +113,46 @@ class PostController extends Controller
 
         return redirect()->route('posts.index');
     }
+
+    public function deleted()
+    {
+
+        $posts = Post::onlyTrashed()->paginate();
+
+        return view('posts.index', compact('posts'));
+    }
+
+    /**
+
+     * Remove the specified resource from storage.
+
+     */
+
+    public function restore($post)
+
+    {
+
+        $post = Post::onlyTrashed()->where('id', $post)->firstOrFail();
+
+        $post->restore();
+
+        return redirect()->route('posts.index');
+    }
+
+    /**
+
+     * Remove the specified resource from storage.
+
+     */
+
+    public function permaDestroy($post)
+
+    {
+
+        $post = Post::onlyTrashed()->where('id', $post)->firstOrFail();
+
+        $post->forceDelete();
+
+        return redirect()->route('posts.deleted');
+    }
 }
