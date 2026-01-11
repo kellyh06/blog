@@ -13,6 +13,11 @@
         <p class="text-base-content/50">{{ $post->user->name }}</p>
         <p class="text-base-content/50">{{ $post->created_at->diffForHumans() }}</p>
         <p class="text-base-content/50"><b>Comments: </b>{{ $post->comments_count }}</p>
+        <div class="flex flex-row flex-wrap gap-1">
+            @foreach($post->tags as $tag)
+            <div class="badge badge-primary">{{ $tag->name }}</div>
+            @endforeach
+        </div>
         <div class="card-actions justify-end">
             @if(!isset($full))
             <a href="/post/{{ $post->id }}" class="btn btn-primary">Read More</a>
