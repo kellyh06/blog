@@ -3,6 +3,7 @@
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
                 </svg>
@@ -24,6 +25,8 @@
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1 z-10">
             <li><a>Item 1</a></li>
+
+            @auth
             <li>
                 <details>
                     <summary>Admin</summary>
@@ -33,10 +36,13 @@
                     </ul>
                 </details>
             </li>
+
+            @endauth
             <li><a>Item 3</a></li>
         </ul>
     </div>
     <div class="navbar-end gap-2">
+
         @auth
         <ul class="menu menu-horizontal px-1">
 
@@ -47,6 +53,7 @@
                         <li><a href="{{ route('profile.edit') }}">@lang('Profile')</a></li>
                         <li>
                             <form action="{{route('logout')}}" method="POST">
+
                                 @csrf
                                 <button>@lang('Logout')</button>
                             </form>
@@ -55,9 +62,11 @@
                 </details>
             </li>
         </ul>
+
         @else
         <a href="{{ route('login') }}" class="btn btn-primary">@lang('Login')</a>
         <a href="{{ route('register') }}" class="btn btn-success">@lang('Register')</a>
+
         @endauth
     </div>
 </div>
