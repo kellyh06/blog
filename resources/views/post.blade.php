@@ -10,7 +10,7 @@
 <div class="card bg-base-200 shadow-sm my-4">
     <div class="card-body">
         <h3 class="card-title text-lg">Add a Comment</h3>
-        <form action="{{ route('comment.store', $post) }}" method="POST">
+        <form action="{{ route('comments.store') }}" method="POST">
             @csrf
             <input type="hidden" name="post_id" value="{{ $post->id }}">
             <textarea name="body" class="textarea textarea-bordered w-full" placeholder="Share your thoughts..." required></textarea>
@@ -37,7 +37,7 @@
                     <p class="text-sm text-base-content/50">{{ $comment->created_at->diffForHumans() }}</p>
                 </div>
                 @can('delete', $comment)
-                <form action="{{ route('comment.destroy', $comment) }}" method="POST" onsubmit="return confirm('Delete this comment?');">
+                <form action="{{ route('comments.destroy', $comment) }}" method="POST" onsubmit="return confirm('Delete this comment?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-ghost text-error">Delete</button>

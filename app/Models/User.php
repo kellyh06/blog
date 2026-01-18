@@ -4,11 +4,15 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Notifications\Notifiable;
+
+use Illuminate\Support\Facades\Auth;
 
 /**
 
@@ -149,5 +153,48 @@ class User extends Authenticatable
     {
 
         return $this->hasMany(Like::class);
+    }
+
+    public function likesOnPosts()
+    {
+
+        return $this->hasManyThrough(Like::class, Post::class);
+    }
+
+    public function followers()
+    {
+
+        return $this->belongsToMany(User::class, 'follows', 'followee_id', 'follower_id');
+    }
+
+    public function followees()
+    {
+
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followee_id');
+    }
+
+    public function authHasFollowed(): Attribute
+    {
+
+        return Attribute::get(function () {
+
+            if (Auth::check()) {
+
+                return $this->followers()->where('follower_id', Auth::user()->id)->exists();
+            }
+
+            return false;
+        });
+    }
+
+    public function feed(): Attribute
+    {
+
+        return Attribute::get(function () {
+
+            $followeeIds = $this->followees()->select('id')->get()->pluck('id');
+
+            return Post::whereIn('user_id', $followeeIds);
+        });
     }
 }
