@@ -12,6 +12,7 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/post/{post}', [PublicController::class, 'post'])->name('post');
 Route::get('/category/{category}', [PublicController::class, 'category'])->name('category');
 Route::get('/user/{user}', [PublicController::class, 'user'])->name('user');
+Route::get('/tag/{tag}', [PublicController::class, 'tag'])->name('tag');
 
 
 

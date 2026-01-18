@@ -8,6 +8,8 @@ use App\Models\Like;
 
 use App\Models\Post;
 
+use App\Models\Tag;
+
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -94,6 +96,22 @@ class PublicController extends Controller
             ->simplePaginate(16);
 
         return view('user', compact('posts', 'user'));
+    }
+
+    public function tag(Tag $tag)
+    {
+
+        $posts = $tag->posts()
+
+            ->with('user')
+
+            ->withCount('comments', 'likes')
+
+            ->latest()
+
+            ->simplePaginate(16);
+
+        return view('welcome', compact('posts'));
     }
 
     public function follow(User $user)

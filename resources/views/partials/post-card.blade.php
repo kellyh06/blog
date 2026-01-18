@@ -21,7 +21,9 @@
         </p>
         <div class="flex flex-row flex-wrap gap-1">
             @foreach($post->tags as $tag)
-            <div class="badge badge-primary">{{ $tag->name }}</div>
+            <a href="{{ route('tag', ['tag' => $tag]) }}">
+                <div class="badge badge-primary">{{ $tag->name }}</div>
+            </a>
             @endforeach
         </div>
         <div class="card-actions justify-end">
