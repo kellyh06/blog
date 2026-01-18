@@ -12,6 +12,8 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 
 Route::get('/post/{post}', [PublicController::class, 'post'])->name('post');
 
+Route::get('/category/{category}', [PublicController::class, 'category'])->name('category');
+
 
 
 Route::get('/dashboard', function () {
@@ -20,10 +22,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-
-    Route::post('/post/{post}/comment', [\App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
-
-    Route::delete('/comment/{comment}', [\App\Http\Controllers\CommentController::class, 'destroy'])->name('comment.destroy');
 
     Route::get('/post/{post}/like', [PublicController::class, 'like'])->name('like');
 
