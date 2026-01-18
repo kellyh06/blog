@@ -79,3 +79,4 @@
 </div>
 
 {{ $posts->links() }}
+@endsection

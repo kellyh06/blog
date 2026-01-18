@@ -22,7 +22,7 @@ class TagPolicy
 
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -35,7 +35,7 @@ class TagPolicy
 
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -48,7 +48,7 @@ class TagPolicy
 
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -61,7 +61,7 @@ class TagPolicy
 
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -74,7 +74,7 @@ class TagPolicy
 
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -87,7 +87,7 @@ class TagPolicy
 
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -100,6 +100,6 @@ class TagPolicy
 
     {
 
-        return false;
+        return true;
     }
 }

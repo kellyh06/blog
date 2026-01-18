@@ -18,7 +18,7 @@ class UpdateTagRequest extends FormRequest
 
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class UpdateTagRequest extends FormRequest
 
         return [
 
-            //
+            'name' => 'required|string|max:255|unique:tags,name,' . $this->tag->id,
 
         ];
     }

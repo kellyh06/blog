@@ -22,7 +22,9 @@ class TagController extends Controller
 
     {
 
-        //
+        $tags = Tag::paginate();
+
+        return view('tags.index', compact('tags'));
 
     }
 
@@ -36,7 +38,7 @@ class TagController extends Controller
 
     {
 
-        //
+        return view('tags.create');
 
     }
 
@@ -50,7 +52,9 @@ class TagController extends Controller
 
     {
 
-        //
+        Tag::create($request->validated());
+
+        return redirect()->route('tags.index');
 
     }
 
@@ -78,7 +82,7 @@ class TagController extends Controller
 
     {
 
-        //
+        return view('tags.edit', compact('tag'));
 
     }
 
@@ -92,7 +96,9 @@ class TagController extends Controller
 
     {
 
-        //
+        $tag->update($request->validated());
+
+        return redirect()->route('tags.index');
 
     }
 
@@ -106,7 +112,9 @@ class TagController extends Controller
 
     {
 
-        //
+        $tag->delete();
+
+        return redirect()->route('tags.index');
 
     }
 }
